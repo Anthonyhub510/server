@@ -1,19 +1,10 @@
-
 const express = require('express');
 const WebSocket = require('ws');
 const http = require('http');
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({
-  port: 8080,
-  verifyClient: (info, done) => {
-    if (info.origin === 'https://chat-nest-hazel.vercel.app/') {
-      done(true);
-    } else {
-      done(false);
-    }
-  },
-});
+const wss = new WebSocket.Server({ server });
+
 const clients = new Map();
 
 // app.use(express.static('public')); // Serve static files if needed
